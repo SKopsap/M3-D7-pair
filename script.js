@@ -29,9 +29,38 @@
 //       EXTRA)
 //       Visualize on a Google Map plugin all the users (using lat & lng)
 
-async function link() {
-  fetch(`https://jsonplaceholder.typicode.com/users`);
+async function App() {
+  let userInput = ''
+  let option = 'name'
 
-  data = await link.json();
+  const input = document.querySelector('input')
+  const selectOption = document.querySelector('#selectoption')
+
+  input.addEventListener('keyup', (e) => {
+    userInput = e.target.value
+  })
+
+  selectOption.addEventListener('change', (e) => {
+    console.log(option)
+    option = e.target.value
+  })
+
+  const response = await fetch('https://jsonplaceholder.typicode.com/users')
+  const users = await response.json()
+
+  const filterName = () => {
+    console.log(users.filter((user) => user.name === option))
+  }
+
+  const filterUsername = () => {
+    console.log(users.filter((user) => user.email === 'Sincere@april.biz'))
+  }
+
+  const filterEmail = () => {
+    console.log(users.filter((user) => user.email === 'Sincere@april.biz'))
+  }
+
+  filterName()
 }
-console.log(link);
+
+App()
